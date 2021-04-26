@@ -1,151 +1,151 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
+  <v-card 
+    class="d-flex-column"
+    height="100%"
+    width="100vw"
+  >
+    <v-app-bar
+      color="grey lighten-3"
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
+      <v-toolbar-title>Elance</v-toolbar-title>
 
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
+      <v-spacer></v-spacer>
 
-      <v-col
-        class="mb-5"
-        cols="12"
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      bottom
+      temporary      
+    >
+      <v-list
+        nav
+        dense
       >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
+        <v-list-item-group
+          v-model="group"
+          active-class="grey lighten-3"
+        >
+          <v-list-item>
+            <v-list-item-title>Votre compte</v-list-item-title>
+          </v-list-item>
 
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
+          <v-list-item>
+            <v-list-item-title>Guide Complet Solaire 2021</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Passage à l'électricité solaire</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Juridique</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-div>
+          <v-navigation-drawer
+            v-model="drawer"
+            :mini-variant.sync="mini"
+            permanent
+                class="d-flex-column"
+                height="92%"
+                width="400px" 
           >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
+          <v-list-item class="px-2">
+            <v-list-item-avatar>
+              <v-img src="https://www.vhv.rs/dpng/d/441-4412135_egypt-sun-icon-clipart-png-download-clip-art.png"></v-img>
+            </v-list-item-avatar>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
+            <v-list-item-title><strong>Les installateurs près de chez moi</strong></v-list-item-title>
+            
+            <v-btn
+              icon
+              @click.stop="mini = !mini"
+            >
+              <v-icon>mdi-chevron-left</v-icon>              
+            </v-btn>            
+          </v-list-item>
+          <v-list-item
+          v-if="!mini"
+          class=""
+          >Nous sélectionnons pour vous les meilleurs installateurs de panneaux solaires partout en France. Découvrez les artisans de votre département en un click.</v-list-item>
+          <v-text-field
+            v-if="!mini"
+            class="px-4"
+            label="Saisissez votre département"
+            :rules="rules"
+            hide-details="auto"
+          ></v-text-field>
+        </v-navigation-drawer>
+        <v-footer
+          dark
+          padless          
+        >
+        <v-card
+          flat
+          tile
+          width="100vw"
+          class="black white--text text-center"
+        >
+          <v-card-text>
+            <v-btn
+              v-for="icon in icons"
+              :key="icon"
+              class="mx-4 white--text"
+              icon
+            >
+              <v-icon size="24px">
+                {{ icon }}
+              </v-icon>
+            </v-btn>
+          </v-card-text>
 
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
+          <v-card-text class="white--text pt-0">
+            service@maison-elance.com <tr/>
+            Mentions Légales - Déclaration de Confidentialité - Conditions Générales de Services
+          </v-card-text>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
+          <v-divider></v-divider>
 
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+          <v-card-text class="white--text">
+            <strong>Copyright @ 2020 élance Technologies Propres S.A.S Tous droits réservés.</strong>
+          </v-card-text>
+        </v-card>
+      </v-footer>
+    </v-div>
+  </v-card>
 </template>
 
 <script>
   export default {
-    name: 'HelloWorld',
-
     data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
+        drawer: false,
+        group: null,
+        icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
       ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
+        rules: [
+        value => !!value || 'Required.',
+        value => (value && value.length >= 3) || 'Min 3 characters',
       ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
-    }),
+        mini: false,
+        }),
+        watch: {
+      group () {
+        this.drawer = false
+      },
+    },
   }
 </script>
