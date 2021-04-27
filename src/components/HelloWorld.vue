@@ -17,7 +17,6 @@
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
-
     <v-navigation-drawer
       v-model="drawer"
       absolute
@@ -50,27 +49,24 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-
     <v-div>
-          <v-navigation-drawer
-            v-model="drawer"
-            :mini-variant.sync="mini"
-            permanent
-                class="d-flex-column"
-                height="92%"
-                width="400px" 
+      <v-navigation-drawer
+        v-model="drawer"
+        :mini-variant.sync="mini"
+        permanent
+            class="d-flex-column"
+            height="92%"
+            width="400px" 
+      >
+        <v-list-item class="mt-4 px-2">
+          <v-list-item-avatar>
+            <v-img src="https://www.vhv.rs/dpng/d/441-4412135_egypt-sun-icon-clipart-png-download-clip-art.png"></v-img>
+          </v-list-item-avatar>
+          <v-list-item-title><strong>Les installateurs près de chez moi</strong></v-list-item-title>            
+          <v-btn
+            icon
+            @click.stop="mini = !mini"
           >
-          <v-list-item class="mt-4 px-2">
-            <v-list-item-avatar>
-              <v-img src="https://www.vhv.rs/dpng/d/441-4412135_egypt-sun-icon-clipart-png-download-clip-art.png"></v-img>
-            </v-list-item-avatar>
-
-            <v-list-item-title><strong>Les installateurs près de chez moi</strong></v-list-item-title>
-            
-            <v-btn
-              icon
-              @click.stop="mini = !mini"
-            >
               <v-icon>mdi-chevron-left</v-icon>              
             </v-btn>            
           </v-list-item>
@@ -102,27 +98,21 @@
                     label="Saisissez votre département"
                     single-line
                   ></v-text-field>
-                </v-toolbar>
-            
+                </v-toolbar>            
                 <v-card-text class="py-0">
-
-                </v-card-text>
-            
+                </v-card-text>            
                 <v-list three-line>
                   <v-list-item
                     v-for="(item, i) in searching"
                     :key="i"
                     ripple
                     @click="() => {}"
-                  >
-
-            
+                  >            
                     <v-list-item-content>
                       <span
                         class="text-uppercase font-weight-regular caption"
                         v-text="item.category"
-                      ></span>
-            
+                      ></span>            
                       <div v-text="item.title"></div>
                     </v-list-item-content>
                   </v-list-item>
@@ -131,9 +121,6 @@
             </v-app>
           </div>
         </v-navigation-drawer>
-
-
-
         <v-footer
           dark
           padless          
@@ -156,14 +143,11 @@
               </v-icon>
             </v-btn>
           </v-card-text>
-
           <v-card-text class="white--text pt-0">
             service@maison-elance.com <tr/>
             Mentions Légales - Déclaration de Confidentialité - Conditions Générales de Services
           </v-card-text>
-
           <v-divider></v-divider>
-
           <v-card-text class="white--text">
             <strong>Copyright @ 2020 élance Technologies Propres S.A.S Tous droits réservés.</strong>
           </v-card-text>
@@ -174,7 +158,6 @@
 </template>
 
 <script>
-
   export default {
     data: () => ({
         drawer: true,
